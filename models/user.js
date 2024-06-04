@@ -24,7 +24,7 @@ const userSchema = new mongoose.Schema({
     role: { type: String, enum: ['Client', 'Admin'] },
     nickname: String,
     password: String,
-    addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    address: { type: addressSchema },
     client: { type: clientSchema, required: function () { return this.role === 'Client'; } }
 });
 
