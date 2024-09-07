@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Modèle pour l'adresse
 const addressSchema = new mongoose.Schema({
@@ -31,4 +31,4 @@ const userSchema = new mongoose.Schema({
 // Création du modèle User
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;
