@@ -2,6 +2,8 @@ import express from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import User from '../models/user.js';
+import loginLimiter from '../middlewares/rateLimiter.js';
+
 
 const router = express.Router();
 const jwtSecretKey = 'SECRET_KEY'; // It's better to store this in environment variables
@@ -53,7 +55,7 @@ router.post('/register', async (req, res) => {
 });
 
 // Route for login
-router.post('/login', async (req, res) => {
+router.post('/login', loginLimiter, async (req, res) => {
     try {
         const { nickname, password } = req.body;
 
