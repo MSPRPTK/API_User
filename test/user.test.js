@@ -75,7 +75,6 @@ describe('Test User Routes', () => {
     expect(res.body).to.have.property('message', 'Mot de passe incorrect.');
   });
 
-  // Additional Test: Attempt to register with duplicate nickname
   it('should not allow registration with an existing nickname', async () => {
     const duplicateUser = {
       role: 'Client',
@@ -114,7 +113,6 @@ describe('Test User Routes', () => {
     expect(res.body).to.have.property('message', 'Profil mis à jour avec succès.');
   });
 
-  // Additional Test: Try updating user without authorization token
   it('should not update user profile without token', async () => {
     const res = await chai.request.execute(app)
       .put('/user/update-user')
