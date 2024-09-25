@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 // Modèle pour l'adresse
 const addressSchema = new mongoose.Schema({
@@ -24,11 +24,11 @@ const userSchema = new mongoose.Schema({
     role: { type: String, enum: ['Client', 'Admin'] },
     nickname: String,
     password: String,
-    addresses: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Address' }],
+    address: { type: addressSchema },
     client: { type: clientSchema, required: function () { return this.role === 'Client'; } }
 });
 
 // Création du modèle User
 const User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;
